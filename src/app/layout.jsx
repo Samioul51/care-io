@@ -19,10 +19,10 @@ export default function RootLayout({ children }) {
       <body
         className={`${inter.className} antialiased`}
       >
-        <header className="shadow-2xl sticky top-0 z-100">
+        <header className="w-full bg-white shadow-2xl sticky top-0 z-100">
           <Navbar></Navbar>
         </header>
-        <main>
+        <main className="w-full max-w-full">
           {children}
           </main>
         <footer>

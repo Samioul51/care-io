@@ -1,15 +1,10 @@
-import { Inter, Poppins } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/Components/layout/Navbar/Navbar";
 import Footer from "@/Components/layout/Footer/Footer";
 
 const inter = Inter({
   variable: "--inter",
-  weight: ["100", "200", "400", "500", "600", "800"]
-});
-
-const poppins = Poppins({
-  variable: "--poppins",
   weight: ["100", "200", "400", "500", "600", "800"]
 });
 
@@ -20,9 +15,9 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="en" data-theme="light">
       <body
-        className={`${inter.variable} ${poppins.variable} antialiased`}
+        className={`${inter.className} antialiased`}
       >
         <header className="shadow-2xl sticky top-0 z-50">
           <Navbar></Navbar>

@@ -1,14 +1,14 @@
 "use client"
 
 import React from 'react';
-import Particles from './Particles';
-import TextType from '../TextType/TextType';
 import { useRouter } from 'next/navigation';
+import Particles from '@/Components/Particles';
+import TextType from '@/Components/TextType';
 
 const Banner = () => {
     const router=useRouter();
     return (
-        <div style={{ width: '100%', height: '400px', position: 'relative', margin: "0px 0px 20px 0px" }}>
+        <div style={{ width: '100%', height: '400px', position: 'relative', margin: "0px 0px 100px 0px" }}>
             <Particles
                 particleColors={['#ffffff', '#ffffff']}
                 particleCount={200}

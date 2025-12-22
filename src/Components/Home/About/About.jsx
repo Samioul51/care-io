@@ -12,7 +12,7 @@ const About = () => {
             <div className='text-black text-3xl lg:text-[40px] font-bold text-center mb-10'>
                 <TextType
                     text={"About Us"}
-                    typingSpeed={10}
+                    typingSpeed={100}
                     pauseDuration={1500}
                     showCursor={false}
                     startOnVisible={true}

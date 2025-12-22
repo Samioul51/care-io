@@ -2,6 +2,8 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/Components/layout/Navbar/Navbar";
 import Footer from "@/Components/layout/Footer/Footer";
+import ScrollProviderWrapper from "@/Components/ScrollProviderWrapper/ScrollProviderWrapper";
+
 
 const inter = Inter({
   variable: "--inter",
@@ -19,15 +21,19 @@ export default function RootLayout({ children }) {
       <body
         className={`${inter.className} antialiased`}
       >
-        <header className="w-full bg-white shadow-2xl sticky top-0 z-100">
+         <ScrollProviderWrapper>
+        <header className="w-full bg-white shadow-2xl sticky top-0 z-[100]">
           <Navbar></Navbar>
         </header>
-        <main className="w-full max-w-full">
-          {children}
+       
+          <main className="w-full max-w-full">
+            {children}
           </main>
+        
         <footer>
           <Footer></Footer>
-        </footer>        
+        </footer>
+        </ScrollProviderWrapper>
       </body>
     </html>
   );

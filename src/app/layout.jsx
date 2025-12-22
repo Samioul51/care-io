@@ -19,7 +19,7 @@ export default function RootLayout({ children }) {
       <body
         className={`${inter.className} antialiased`}
       >
-        <header className="shadow-2xl sticky top-0 z-50">
+        <header className="shadow-2xl sticky top-0 z-100">
           <Navbar></Navbar>
         </header>
         <main>

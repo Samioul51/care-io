@@ -21,7 +21,7 @@ const Navbar = () => {
     ]
 
     return (
-        <div className='w-full max-w-360 flex justify-between items-center px-2.5 py-5 mx-auto'>
+        <div className='w-full max-w-360 flex justify-between items-center px-2.5 py-5 mx-auto bg-white'>
             <Link href={"/"} className='flex flex-col gap-1 items-center'>
                 <Image
                     alt="CARE.IO"

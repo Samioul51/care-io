@@ -62,7 +62,7 @@ const Navbar = () => {
                         <NavLink key={option.name} href={option.path} className="text-[#4b5563]">{option.name}</NavLink>
                     ))
                 }
-                <Link href={"/signup"} className='bg-[#2563eb] text-white font-medium rounded- py-[0.5rem] px-[1.5rem] rounded-[9999px]'>Sign Up</Link>
+                <Link href={"/signup"} className='bg-[#2563eb] text-white font-medium py-[0.5rem] px-[1.5rem] rounded-[9999px]'>Sign Up</Link>
             </div>
         </div>
     );

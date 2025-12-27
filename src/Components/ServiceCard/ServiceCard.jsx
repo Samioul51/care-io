@@ -1,7 +1,9 @@
+import Link from "next/link";
 import React from "react";
 
 const ServiceCard = ({ service }) => {
   const {
+    _id,
     service_name,
     pricePerHour,
     image,
@@ -40,9 +42,12 @@ const ServiceCard = ({ service }) => {
         </p>
 
         {/* Button */}
-        <button className="w-full mb-3 bg-[#2563eb] font-medium py-2.5 rounded-full text-white cursor-pointer hover:bg-blue-700 transition-colors">
+        <Link
+          href={`/services/${_id}`}
+          className="w-full mb-3 bg-[#2563eb] font-medium py-2.5 rounded-full text-white cursor-pointer text-center block hover:bg-blue-700 transition-colors"
+        >
           View Service
-        </button>
+        </Link>
       </div>
     </div>
   );

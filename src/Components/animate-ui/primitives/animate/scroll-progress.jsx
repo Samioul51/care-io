@@ -2,7 +2,7 @@
 import * as React from 'react';
 import { motion, useScroll, useSpring } from 'motion/react';
 
-import { Slot } from '@/components/animate-ui/primitives/animate/slot';
+import { Slot } from '@/Components/animate-ui/primitives/animate/Slot';
 import { getStrictContext } from '@/lib/get-strict-context';
 import { useMotionValueState } from '@/hooks/use-motion-value-state';
 

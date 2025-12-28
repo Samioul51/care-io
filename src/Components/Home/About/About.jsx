@@ -21,10 +21,10 @@ const About = () => {
                 />
             </div>
             <div className='w-full max-w-[1440px] flex flex-col items-center lg:flex-row lg:justify-between lg:gap-0 gap-10 px-10 bg-[#2563eb] py-10'>
-                <div className='w-full lg:max-w-1/2'>
+                <div className='w-full flex justify-center max-w-full lg:max-w-1/2'>
                     <Image alt="About" src={about} className='w-full max-w-[500px] h-auto rounded-2xl'></Image>
                 </div>
-                <div className='text-white text-[12px] lg:text-[16px] w-full lg:max-w-1/2 font-medium text-justify'>
+                <div className='text-white text-[8px] lg:text-[12px] w-full lg:max-w-1/2 font-medium text-justify'>
                     <SplitText
                         text="CARE.IO is a trusted online platform dedicated to providing reliable care services for children, elderly, and family members. Our mission is to make caregiving simple, secure, and accessible for everyone.
                         We connect users with verified and experienced caretakers for various needs such as babysitting, elderly care, and special care at home. With just a few clicks, users can book professional care services tailored to their schedule and location.

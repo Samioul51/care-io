@@ -4,71 +4,89 @@ import { collections, dbConnect } from "./dbConnect";
 import { loginUser } from "@/actions/server/auth";
 
 export const authOptions = {
-    // Configure one or more authentication providers
-    providers: [
-        CredentialsProvider({
-            name: 'Credentials',
-            async authorize(credentials, req) {
-                const user = await loginUser({
-                    email: credentials.email,
-                    password: credentials.password
-                });
-                return user;
-            }
-        }),
-        GoogleProvider({
-            clientId: process.env.GOOGLE_CLIENT_ID,
-            clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-        })
-    ],
-    session: {
-        strategy: "jwt",
+  secret: process.env.NEXTAUTH_SECRET,
+
+  session: {
+    strategy: "jwt",
+  },
+
+  providers: [
+    CredentialsProvider({
+      async authorize(credentials) {
+        if (!credentials?.email || !credentials?.password) 
+            return null;
+
+        const user = await loginUser({
+          email: credentials.email,
+          password: credentials.password,
+        });
+
+        if (!user) 
+            return null;
+
+        return user;
+      },
+    }),
+
+    GoogleProvider({
+      clientId: process.env.GOOGLE_CLIENT_ID,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+    }),
+  ],
+
+  callbacks: {
+    async signIn({ user, account }) {
+      if (account?.provider === "google") {
+        const collection=await dbConnect(collections.USERS);
+        const existingUser = await collection.findOne({
+          email: user.email,
+        });
+
+        if (!existingUser) {
+          const newUser = {
+            provider: "google",
+            email: user.email,
+            name: user.name,
+            image: user.image,
+            role: "user",
+            createdAt: new Date(),
+          };
+
+          const collection2=await dbConnect(collections.USERS);
+          const res = await collection2.insertOne(newUser);
+          return res.acknowledged;
+        }
+      }
+
+      return true;
     },
-    callbacks: {
-        async signIn({ user, account, profile, email, credentials }) {
-            const isExist = await dbConnect(collections.USERS).findOne({
-                email: user.email,
-            });
 
-            if (isExist)
-                return true;
+    async jwt({ token, user, account }) {
+      if (user) {
+        if (account?.provider === "google") {
+          const collection=  await dbConnect(collections.USERS);
+          const dbUser = await collection.findOne({
+            email: user.email,
+          });
 
-            const newUser = {
-                provider: account?.provider,
-                email: user.email,
-                name: user.name,
-                image: user.image,
-                role: "user"
+          token.role = dbUser?.role || "user";
+          token.email = dbUser?.email;
+        } 
+        else {
+          token.role = user.role;
+          token.email = user.email;
+        }
+      }
 
-            };
-
-            const res = await dbConnect(collections.USERS).insertOne(newUser);
-
-            return res.acknowledged;
-
-        },
-        async session({ session, token, user }) {
-            if (token) {
-                session.role = token?.role;
-                session.email = token?.email;
-            }
-            return session;
-        },
-        async jwt({ token, user, account, profile, isNewUser }) {
-            console.log("account data in token", token);
-            if (user) {
-                if (account.provider == "google") {
-                    const dbUser = await dbConnect(collections.USERS).findOne({
-                        email: user.email,
-                    });
-                    token.role = dbUser?.role;
-                    token.email = dbUser?.email;
-                } else {
-                    token.role = user?.role;
-                    token.email = user?.email;
-                }
-            }
-            return token;
-        },
+      return token;
     },
-}
+
+    async session({ session, token }) {
+      if (session.user) {
+        session.user.role = token.role;
+        session.user.email = token.email;
+      }
+      return session;
+    },
+  },
+};

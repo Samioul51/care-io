@@ -19,27 +19,27 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <NextAuthProvider>
     <html lang="en" data-theme="light">
       <body
         className={`${inter.className} antialiased`}
       >
-        <Toaster />
-        <ScrollProviderWrapper>
-          <header className="w-full bg-white shadow-2xl sticky top-0 z-[100]">
-            <Navbar></Navbar>
-          </header>
+        <NextAuthProvider>
+          <Toaster />
+          <ScrollProviderWrapper>
+            <header className="w-full bg-white shadow-2xl sticky top-0 z-[100]">
+              <Navbar></Navbar>
+            </header>
 
-          <main className="w-full max-w-full">
-            {children}
-          </main>
+            <main className="w-full max-w-full">
+              {children}
+            </main>
 
-          <footer>
-            <Footer></Footer>
-          </footer>
-        </ScrollProviderWrapper>
+            <footer>
+              <Footer></Footer>
+            </footer>
+          </ScrollProviderWrapper>
+        </NextAuthProvider>
       </body>
     </html>
-    </NextAuthProvider>
   );
 }

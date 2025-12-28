@@ -9,7 +9,7 @@ export const postUser = async (payload) => {
     if (!email || !password)
         return { success: false };
 
-    const usersCollection = await dbConnect(collections.USERS); // await here
+    const usersCollection = await dbConnect(collections.USERS); 
     const isExist = await usersCollection.findOne({ email });
 
     if (isExist)
@@ -31,20 +31,20 @@ export const postUser = async (payload) => {
 };
 
 
-export const loginUser=async (payload)=>{
-    const {email,password,name}=payload;
+export const loginUser = async (payload) => {
+    const { email, password } = payload;
 
-    if(!email || !password)
+    if (!email || !password)
         return null;
 
-    const user=await dbConnect(collections.USERS).findOne({email});
-
-    if(!user)
+    const collection = await dbConnect(collections.USERS);
+    const user = await collection.findOne({ email });
+    if (!user)
         return null;
 
-    const isMatched=await bcrypt.compare(password,user?.password);
+    const isMatched = await bcrypt.compare(password, user?.password);
 
-    if(isMatched)
+    if (isMatched)
         return user;
     return null;
 };

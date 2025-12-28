@@ -3,6 +3,7 @@
 import { collections, dbConnect } from "@/lib/dbConnect";
 import { orderInvoiceTemplate } from "@/lib/orderInvoice";
 import { sendEmail } from "@/lib/sendEmail";
+import { ObjectId } from "mongodb";
 
 export const postOrder = async (payload) => {
     const newOrder = {
@@ -18,7 +19,7 @@ export const postOrder = async (payload) => {
         to: newOrder.email,
         subject: "Your Order Invoice - Care IO",
         html: orderInvoiceTemplate({
-           order: newOrder
+            order: newOrder
         }),
     });
 
@@ -26,4 +27,19 @@ export const postOrder = async (payload) => {
         success: res.acknowledged,
         orderId: res.insertedId
     };
+}
+
+export const getOrders = async (email) => {
+    if (!email)
+        return [];
+
+    const collection = await dbConnect(collections.ORDERS);
+    const orders = await collection.find({ email }).sort({ createdAt: -1 }).toArray();
+    return orders;
+};
+
+export const deleteOrder = async (id) => {
+    const collection = await dbConnect(collections.ORDERS);
+    const res = await collection.deleteOne({ _id: new ObjectId(id) });
+    return res.acknowledged;
 }

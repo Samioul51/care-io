@@ -1,11 +1,12 @@
 import { getSingleService } from "@/actions/server/service";
+import BookButton from "@/Components/Buttons/BookButton";
 import React from "react";
 
 const Service = async ({ params }) => {
   const {id}=await params;
   const service=await getSingleService(id);
 
-  const { service_name, category, description, pricePerHour, image, location } = service;
+  const { _id,service_name, category, description, pricePerHour, image, location } = service;
 
   return (
     <div className="w-full max-w-5xl mx-auto mb-[100px] p-6 bg-white rounded-2xl shadow-md border border-gray-100">
@@ -33,9 +34,7 @@ const Service = async ({ params }) => {
         ৳{pricePerHour ?? 0} / hour
       </p>
 
-      <button className="w-full bg-[#2563eb] font-medium py-2.5 rounded-full text-white cursor-pointer hover:bg-blue-700 transition-colors">
-        Book Service
-      </button>
+      <BookButton serviceId={_id}></BookButton>
     </div>
   );
 };

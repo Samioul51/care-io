@@ -13,5 +13,5 @@ export const getSingleService = async (id) => {
     const query = { _id: new ObjectId(id) };
     const collection = await dbConnect(collections.SERVICES);
     const service=await collection.findOne(query);
-    return service ? { ...service, _id: service._id.toString() } : {};
+    return service ? { ...service, _id: service._id.toString() } :{};
 }

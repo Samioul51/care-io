@@ -64,6 +64,7 @@ const BookingForm = ({ service }) => {
             toast.success("Service booked successfully");
             
         }catch(error){
+            setLoading(false);
             toast.error("Service booking failed");
         }
 

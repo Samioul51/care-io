@@ -8,7 +8,7 @@ const Booking =async ({params}) => {
     const service=await getSingleService(id);
 
     return (
-        <div className='w-full max-w-[1440px] mb-[100px] mx-auto'>
+        <div className='w-full py-[50px] max-w-[1440px] mb-[100px] mx-auto'>
             <div className='text-black text-3xl lg:text-[40px] font-bold text-center mb-10'>
                 <TextType
                     text={"Confirm Booking"}

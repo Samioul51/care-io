@@ -1,5 +1,6 @@
 import About from "@/Components/Home/About/About";
 import Banner from "@/Components/Home/Banner/Banner";
+import Featured from "@/Components/Home/Featured/Featured";
 import Services from "@/Components/Home/Services/Services";
 import Testimonials from "@/Components/Home/Testimonials/Testimonials";
 
@@ -9,6 +10,7 @@ const Home=()=> {
       <Banner></Banner>
       <About></About>
       <Services></Services>
+      <Featured></Featured>
       <Testimonials></Testimonials>
     </div>
   );

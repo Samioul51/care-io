@@ -4,8 +4,9 @@ import FAQ from "@/Components/Home/FAQ/FAQ";
 import Featured from "@/Components/Home/Featured/Featured";
 import Services from "@/Components/Home/Services/Services";
 import Testimonials from "@/Components/Home/Testimonials/Testimonials";
+import Newsletter from "@/Components/Home/Newsletter/Newsletter";
 
-const Home=()=> {
+const Home = () => {
   return (
     <div>
       <Banner></Banner>
@@ -13,6 +14,7 @@ const Home=()=> {
       <Services></Services>
       <Featured></Featured>
       <Testimonials></Testimonials>
+      <Newsletter></Newsletter>
       <FAQ></FAQ>
     </div>
   );

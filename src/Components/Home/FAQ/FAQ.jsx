@@ -39,17 +39,25 @@ const FAQ = () => {
                     loop={false}
                 />
             </div>
-            <div className='w-full max-w-360 flex flex-col gap-5'>
-                {
-                    faqs.map((faq, index) => <Accordion key={faq.question} className="shadow-xl bg-gray-100 rounded-lg" type="single" collapsible>
-                        <AccordionItem value={index+1}>
-                            <AccordionTrigger className="px-5">{faq.question}</AccordionTrigger>
-                            <AccordionContent className="px-5">
-                                {faq.answer}
-                            </AccordionContent>
-                        </AccordionItem>
-                    </Accordion>)
-                }
+            <div className='w-full px-5 lg:px-0'>
+                <Accordion type="single" collapsible className="w-full space-y-4">
+                    {
+                        faqs.map((faq, index) => (
+                            <AccordionItem
+                                key={faq.question}
+                                value={`item-${index}`}
+                                className="border-none shadow-md bg-white rounded-2xl overflow-hidden px-4"
+                            >
+                                <AccordionTrigger className="text-lg md:text-xl font-semibold py-6 hover:no-underline hover:text-[#2563eb] transition-colors">
+                                    {faq.question}
+                                </AccordionTrigger>
+                                <AccordionContent className="text-gray-600 text-base md:text-lg leading-relaxed pb-6">
+                                    {faq.answer}
+                                </AccordionContent>
+                            </AccordionItem>
+                        ))
+                    }
+                </Accordion>
             </div>
         </div>
     );

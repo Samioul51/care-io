@@ -9,7 +9,7 @@ import toast from 'react-hot-toast';
 const Login = () => {
     const params = useSearchParams();
     const router = useRouter();
-    const callback = params.get("callbackUrl") || "/";
+    const callback = params.get("callbackUrl") || "/services";
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
 
@@ -31,7 +31,7 @@ const Login = () => {
             email: form.email,
             password: form.password,
             redirect: false,
-            callbackUrl: params.get("callbackUrl") || "/"
+            callbackUrl: callback
         });
 
         if (res.ok) {
@@ -46,7 +46,7 @@ const Login = () => {
 
     const handleGoogleLogin = () => {
         signIn("google", {
-            callbackUrl: callback
+            callbackUrl: callback || "/services"
         });
     }
 

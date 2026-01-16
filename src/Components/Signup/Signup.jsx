@@ -10,7 +10,7 @@ import { postUser } from '@/actions/server/auth';
 const Signup = () => {
     const params = useSearchParams();
     const router = useRouter();
-    const callbackUrl = params.get("callbackUrl") || "/";
+    const callbackUrl = params.get("callbackUrl") || "/services";
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
     const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
@@ -35,32 +35,32 @@ const Signup = () => {
             setError("Password must be 6 characters long with at least one uppercase and lowercase letter.")
             return;
         }
-        
-        const res=await postUser(form);
 
-        if(res.acknowledged){
-            const res=await signIn("credentials",{
-                email:form.email,
-                password:form.password,
-                redirect:false,
-                callbackUrl:callbackUrl
+        const res = await postUser(form);
+
+        if (res.acknowledged) {
+            const res = await signIn("credentials", {
+                email: form.email,
+                password: form.password,
+                redirect: false,
+                callbackUrl: callbackUrl || "/services"
             });
 
-            if(res.ok){
+            if (res.ok) {
                 toast.success("Signed up successfully");
                 router.push(callbackUrl);
             }
             setLoading(false);
         }
-        else{
+        else {
             toast.error("Sign up failed");
             setLoading(false);
         }
     };
 
-    const handleGoogleLogin=()=>{
-        signIn("google",{
-            callbackUrl: callbackUrl
+    const handleGoogleLogin = () => {
+        signIn("google", {
+            callbackUrl: callbackUrl || "/services"
         });
     }
 

@@ -12,15 +12,8 @@ const Login = () => {
     const callback = params.get("callbackUrl") || "/services";
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
-
-    const [form, setForm] = useState({
-        email: "",
-        password: "",
-    });
-
-    const handleChange = (e) => {
-        setForm({ ...form, [e.target.name]: e.target.value });
-    };
+    const [email,setEmail]=useState("");
+    const [password,setPassword]=useState("");
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -28,8 +21,8 @@ const Login = () => {
         setError("");
 
         const res = await signIn("credentials", {
-            email: form.email,
-            password: form.password,
+            email,
+            password,
             redirect: false,
             callbackUrl: callback
         });
@@ -50,13 +43,18 @@ const Login = () => {
         });
     }
 
+    const handleDemoLogin=()=>{
+        setEmail(process.env.NEXT_PUBLIC_DEMO_EMAIL);
+        setPassword(process.env.NEXT_PUBLIC_DEMO_PASSWORD);
+    }
+
     return (
         <div className='w-full max-w-[1440px] h-screen flex items-center'>
             <div className="bg-white text-gray-500 max-w-96 mx-4 md:p-6 p-4 text-left text-sm rounded-xl shadow-[0px_0px_10px_0px] shadow-black/10 mx-auto">
                 <h2 className="text-2xl font-semibold mb-6 text-center text-gray-800">Welcome back</h2>
                 <form onSubmit={handleSubmit}>
-                    <input name="email" onChange={handleChange} className="w-full bg-transparent border my-3 border-gray-500/30 outline-none rounded-full py-2.5 px-4" type="email" placeholder="Enter your email" required />
-                    <input name="password" onChange={handleChange} className="w-full bg-transparent border mt-1 border-gray-500/30 outline-none rounded-full py-2.5 px-4 mb-4" type="password" placeholder="Enter your password" required />
+                    <input name="email" value={email} onChange={(e)=>setEmail(e.target.value)} className="w-full bg-transparent border my-3 border-gray-500/30 outline-none rounded-full py-2.5 px-4" type="email" placeholder="Enter your email" required />
+                    <input name="password" value={password} onChange={(e)=>setPassword(e.target.value)} className="w-full bg-transparent border mt-1 border-gray-500/30 outline-none rounded-full py-2.5 px-4 mb-4" type="password" placeholder="Enter your password" required />
                     {
                         error &&
                         (<p className='text-red-500 text-sm mb-2 text-center'>{error}</p>)
@@ -68,6 +66,7 @@ const Login = () => {
                     <img className="h-4 w-4" src="https://raw.githubusercontent.com/prebuiltui/prebuiltui/main/assets/login/googleFavicon.png" alt="googleFavicon" />
                     Log in with Google
                 </button>
+                <button onClick={handleDemoLogin} disabled={loading} type="submit" className="w-full mb-3 bg-[#2563eb] font-medium py-2.5 rounded-full text-white cursor-pointer">Demo Credentials</button>
             </div>
         </div>
     );

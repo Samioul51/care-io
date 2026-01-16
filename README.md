@@ -40,6 +40,18 @@ Making caregiving simple, safe, and accessible for everyone.
 - Invoice generation and delivery
 - Status update notifications
 
+## 🛣️ Route Summary
+
+| Route | Description | Access |
+|-------|-------------|--------|
+| `/` | Landing page with banner, services overview, FAQs, and newsletter. | Public |
+| `/login` | Authentication page for existing users. | Public |
+| `/signup` | Registration page for new users. | Public |
+| `/services` | Browse all available caregiving categories. | Public |
+| `/services/[id]`| Detailed view and description of a specific service. | Public |
+| `/booking/[id]` | Specialized booking form with location selection. | Authenticated |
+| `/my_bookings` | User dashboard to track personal booking history. | Authenticated |
+
 ## 🚀 Getting Started
 
 ### Prerequisites

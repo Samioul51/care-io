@@ -18,7 +18,7 @@ const Services =async () => {
                     loop={false}
                 />
             </div>
-            <div className='w-full max-w-full gap-10 grid grid-cols-1 lg:grid-cols-3'>
+            <div className='w-full max-w-full gap-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3'>
                 {
                     services.map(service => <ServiceCard key={service._id} service={service}></ServiceCard>)
                 }

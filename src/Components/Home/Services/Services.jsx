@@ -33,7 +33,7 @@ const Services = () => {
                 <motion.button
                     whileHover={{ scale: 1.05 }}
                 >
-                <div className="card w-96 bg-base-100 card-lg shadow-lg mx-auto">
+                <div className="card w-full max-w-96 bg-base-100 card-lg shadow-lg mx-auto">
                     <div className="card-body">
                         <h2 className="card-title font-bold">Baby Care</h2>
                         <p className='text-justify'>Professional babysitting services for your little ones with experienced caregivers.</p>
@@ -44,7 +44,7 @@ const Services = () => {
                 <motion.button
                     whileHover={{ scale: 1.05 }}
                 >
-                <div className="card w-96 bg-base-100 card-lg shadow-lg mx-auto">
+                <div className="card w-full max-w-96 bg-base-100 card-lg shadow-lg mx-auto">
                     <div className="card-body">
                         <h2 className="card-title font-bold">Sick Care</h2>
                         <p className='text-justify'>Specialized care for those recovering or managing health conditions.</p>

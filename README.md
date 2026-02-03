@@ -55,7 +55,6 @@ Making caregiving simple, safe, and accessible for everyone.
 ## 🚀 Getting Started
 
 ### Prerequisites
-- Node.js 18+ 
 - MongoDB Atlas account or local MongoDB
 - Google OAuth credentials
 - Email service (Gmail recommended)
@@ -141,7 +140,6 @@ npm start
 - **Notifications**: React Hot Toast
 
 ### Backend
-- **Runtime**: Node.js
 - **Database**: MongoDB 7.0.0
 - **Authentication**: NextAuth 4.24.13
 - **Password Hashing**: bcryptjs 3.0.3
